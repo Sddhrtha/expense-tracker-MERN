@@ -2,6 +2,8 @@ const express =  require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const expensesRouter = require("./routes/expenses.js");
+const incomeRouter = require("./routes/income");
+const savingsRouter = require("./routes/savings");
 
 require('dotenv').config();
 
@@ -23,7 +25,8 @@ connection.once('open', () => {
 
 
 app.use("/expenses", expensesRouter);
-
+app.use("/income", incomeRouter);
+app.use("/savings", savingsRouter);
 app.use("*", (req, res) => res.status(404).json({ error: "going here"}))
 
 app.listen(port, () => {
